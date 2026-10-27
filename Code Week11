@@ -1,0 +1,38 @@
+class Game {
+  String name;
+
+  Game(this.name);
+
+  void displayInfo() {
+    print("Game: $name");
+  }
+
+  Future<String> saveGame() async {
+    await Future.delayed(Duration(seconds: 2));
+    return "$name saved successfully!";
+  }
+}
+
+class MobileGame extends Game {
+  String platform;
+
+  MobileGame(String name, this.platform) : super(name);
+
+  void displayPlatform() {
+    print("Platform: $platform");
+  }
+}
+
+Future<void> main() async {
+  MobileGame game = MobileGame("Mobile Legends", "Android");
+
+  game.displayInfo();
+  game.displayPlatform();
+
+  print("Saving game data...");
+
+  String result = await game.saveGame();
+
+  print(result);
+  print("Program finished.");
+}
